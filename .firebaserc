@@ -1,10 +1,5 @@
 {
   "projects": {
-    "default": "a-t-fast-lanes",
-    "a-t-fast-lanes": "a-t-fast-lanes",
-    "fast-lanes-llc": "fast-lanes-llc",
-    "fast": "a-t-fast-lanes"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "fast-lanes-llc"
+  }
 }

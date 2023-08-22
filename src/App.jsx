@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { theme } from './theme';
-import styled from 'styled-components';
-import { MapPage } from './pages/MapPage';
-import { LoginPage } from './pages/LoginPage';
-import { UsersPage } from './pages/UsersPage';
-import { DriversPage } from './pages/DriversPage';
-import { CreateDriverPage } from './pages/CreateDriverPage';
-import { EditDriverPage } from './pages/EditDriverPage';
-import { NotFound } from './pages/NotFound';
-import { ErrorBoundary } from './components/ErrorBoudary';
-import { Header } from './components/Header';
-import { Drawer } from './components/Drawer';
+import { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import { theme } from "./theme";
+import styled from "styled-components";
+import { MapPage } from "./pages/MapPage";
+import { LoginPage } from "./pages/LoginPage";
+import { UsersPage } from "./pages/UsersPage";
+import { DriversPage } from "./pages/DriversPage";
+import { CreateDriverPage } from "./pages/CreateDriverPage";
+import { EditDriverPage } from "./pages/EditDriverPage";
+import { NotFound } from "./pages/NotFound";
+import { ErrorBoundary } from "./components/ErrorBoudary";
+import { Header } from "./components/Header";
+import { Drawer } from "./components/Drawer";
 
 const Main = styled.main`
   background-color: ${theme.COLORS.grey};
@@ -40,8 +40,8 @@ export const App = () => {
 
   return (
     <Switch>
-      <Route exact path='/' component={NotFound} />
-      <Route path='/login' component={LoginPage} />
+      <Route exact path="/" component={LoginPage} />
+      <Route path="/login" component={LoginPage} />
       <Route>
         <ErrorBoundary>
           <Header openDrawer={openDrawer} />
@@ -49,11 +49,11 @@ export const App = () => {
             <Drawer drawer={drawer} />
             <Wrapper>
               <Switch>
-                <Route path='/drivers/create' component={CreateDriverPage} />
-                <Route path='/drivers/:id' component={EditDriverPage} />
-                <Route path='/drivers' component={DriversPage} />
-                <Route path='/users' component={UsersPage} />
-                <Route path='/map' component={MapPage} />
+                <Route path="/drivers/create" component={CreateDriverPage} />
+                <Route path="/drivers/:id" component={EditDriverPage} />
+                <Route path="/drivers" component={DriversPage} />
+                <Route path="/users" component={UsersPage} />
+                <Route path="/map" component={MapPage} />
               </Switch>
             </Wrapper>
           </Main>

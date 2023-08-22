@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import zipcodes from 'zipcodes';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useUser } from '../hooks/useUser';
-import { validateCreateDriver } from '../utils/other';
-import { updateItem } from '../utils/firebase';
-import { theme } from '../theme';
+import styled from "styled-components";
+import zipcodes from "zipcodes";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
+import { validateCreateDriver } from "../utils/other";
+import { updateItem } from "../utils/firebase";
+import { theme } from "../theme";
 import {
   Button,
   FormControl,
@@ -15,11 +15,11 @@ import {
   Select,
   Switch,
   TextField,
-} from '@material-ui/core';
-import { ErrorMessage } from './../components/ErrorMessage';
-import { FormInput } from './../components/FormInput';
-import ListIcon from '@material-ui/icons/List';
-import SaveIcon from '@material-ui/icons/Save';
+} from "@material-ui/core";
+import { ErrorMessage } from "./../components/ErrorMessage";
+import { FormInput } from "./../components/FormInput";
+import ListIcon from "@material-ui/icons/List";
+import SaveIcon from "@material-ui/icons/Save";
 
 const Header = styled.div`
   color: ${theme.COLORS.main};
@@ -49,12 +49,12 @@ const SwitchWrapper = styled.div`
 
 const useStyles = makeStyles(() => ({
   textField: {
-    marginTop: '1.5em',
-    width: '100%',
+    marginTop: "1.5em",
+    width: "100%",
   },
   formControl: {
-    marginTop: '1.5em',
-    width: '100%',
+    marginTop: "1.5em",
+    width: "100%",
   },
   save: {
     color: theme.COLORS.main,
@@ -68,25 +68,25 @@ export const CreateDriverPage = () => {
   const [message, setMessage] = useState(null);
   const [driver, setDriver] = useState({
     service: false,
-    id: '',
+    id: "",
     roomId: user.roomId,
-    dateav: '2022-04-14',
-    owner: '',
-    name: '',
-    phone: '',
-    vehicleType: '',
-    dimensions: '',
-    capacity: '',
-    information: '',
-    status: '',
-    canada: '',
-    email: '',
-    home: '',
-    zipCode: '',
-    location: '',
-    lat: '',
-    lng: '',
-    note: '',
+    dateav: "2022-04-14",
+    owner: "",
+    name: "",
+    phone: "",
+    vehicleType: "",
+    dimensions: "",
+    capacity: "",
+    information: "",
+    status: "",
+    canada: "",
+    email: "",
+    home: "",
+    zipCode: "",
+    location: "",
+    lat: "",
+    lng: "",
+    note: "",
   });
 
   const updateDriverForm = (e) => {
@@ -99,15 +99,15 @@ export const CreateDriverPage = () => {
       setMessage(error);
       return;
     }
-    await updateItem('drivers', driver.id, driver);
-    history.push('/drivers');
+    await updateItem("drivers", driver.id, driver);
+    history.push("/drivers");
   };
 
   const getLocationByZip = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       const info = zipcodes.lookup(driver.zipCode);
       if (!info) {
-        setMessage('ZipCode not found');
+        setMessage("ZipCode not found");
         return;
       }
       setDriver({
@@ -129,9 +129,9 @@ export const CreateDriverPage = () => {
       <Header>
         <Title>Create Driver</Title>
         <Button
-          color='inherit'
+          color="inherit"
           startIcon={<ListIcon />}
-          onClick={() => history.push('/drivers')}
+          onClick={() => history.push("/drivers")}
         >
           list
         </Button>
@@ -140,9 +140,9 @@ export const CreateDriverPage = () => {
         <SwitchWrapper>
           <div>Service</div>
           <Switch
-            color='primary'
-            name='service'
-            id='service_input'
+            color="primary"
+            name="service"
+            id="service_input"
             checked={driver.service}
             onChange={(e) =>
               setDriver({ ...driver, service: e.target.checked })
@@ -151,199 +151,199 @@ export const CreateDriverPage = () => {
         </SwitchWrapper>
         <TextField
           className={classes.textField}
-          name='id'
-          id='id'
-          label='Driver ID'
-          type='text'
+          name="id"
+          id="id"
+          label="Driver ID"
+          type="text"
           value={driver.id}
           onChange={updateDriverForm}
         />
         <TextField
           className={classes.textField}
-          name='dateav'
-          id='date_input'
-          label='Dateav'
-          type='date'
+          name="dateav"
+          id="date_input"
+          label="Dateav"
+          type="date"
           value={driver.dateav}
           onChange={updateDriverForm}
         />
         <FormInput
           className={classes.textField}
-          name='owner'
-          type='text'
+          name="owner"
+          type="text"
           value={driver.owner}
           onChange={updateDriverForm}
-          id='owner_input'
-          label='Owner'
+          id="owner_input"
+          label="Owner"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='name'
-          type='text'
+          name="name"
+          type="text"
           value={driver.name}
           onChange={updateDriverForm}
-          id='name_input'
-          label='Name'
+          id="name_input"
+          label="Name"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='phone'
-          type='text'
+          name="phone"
+          type="text"
           value={driver.phone}
           onChange={updateDriverForm}
-          id='phone_input'
-          label='Phone'
+          id="phone_input"
+          label="Phone"
           error={false}
         />
         <FormControl className={classes.formControl}>
-          <InputLabel id='vehicle-type'>Vehicle Type</InputLabel>
+          <InputLabel id="vehicle-type">Vehicle Type</InputLabel>
           <Select
-            labelId='vehicle-type'
-            id='vehicle_type_input'
-            name='vehicleType'
+            labelId="vehicle-type"
+            id="vehicle_type_input"
+            name="vehicleType"
             value={driver.vehicleType}
             onChange={updateDriverForm}
           >
-            <MenuItem value={'Box Truck'}>Box Truck</MenuItem>
-            <MenuItem value={'Large Straight'}>Large Straight</MenuItem>
-            <MenuItem value={'Sprinter'}>Sprinter</MenuItem>
+            <MenuItem value={"Box Truck"}>Box Truck</MenuItem>
+            <MenuItem value={"Large Straight"}>Large Straight</MenuItem>
+            <MenuItem value={"Sprinter"}>Sprinter</MenuItem>
           </Select>
         </FormControl>
         <FormInput
           className={classes.textField}
-          name='dimensions'
-          type='text'
+          name="dimensions"
+          type="text"
           value={driver.dimensions}
           onChange={updateDriverForm}
-          id='dimensions_input'
-          label='Dimensions'
+          id="dimensions_input"
+          label="Dimensions"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='capacity'
-          type='text'
+          name="capacity"
+          type="text"
           value={driver.capacity}
           onChange={updateDriverForm}
-          id='capacity_input'
-          label='Capacity'
+          id="capacity_input"
+          label="Capacity"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='information'
-          type='text'
+          name="information"
+          type="text"
           value={driver.information}
           onChange={updateDriverForm}
-          id='information_input'
-          label='Information'
+          id="information_input"
+          label="Information"
           error={false}
         />
         <FormControl className={classes.formControl}>
-          <InputLabel id='status'>Status</InputLabel>
+          <InputLabel id="status">Status</InputLabel>
           <Select
-            labelId='status'
-            id='status_input'
-            name='status'
+            labelId="status"
+            id="status_input"
+            name="status"
             value={driver.status}
             onChange={updateDriverForm}
           >
-            <MenuItem value={'No Border'}>No Border</MenuItem>
-            <MenuItem value={'Green Card'}>Green Card</MenuItem>
-            <MenuItem value={'Work authorisation'}>Work authorisation</MenuItem>
-            <MenuItem value={'US Citizen'}>US Citizen</MenuItem>
+            <MenuItem value={"No Border"}>No Border</MenuItem>
+            <MenuItem value={"Green Card"}>Green Card</MenuItem>
+            <MenuItem value={"Work authorisation"}>Work authorisation</MenuItem>
+            <MenuItem value={"US Citizen"}>US Citizen</MenuItem>
           </Select>
         </FormControl>
         <FormInput
           className={classes.textField}
-          name='canada'
-          type='text'
+          name="canada"
+          type="text"
           value={driver.canada}
           onChange={updateDriverForm}
-          id='canada_input'
-          label='Canada'
+          id="canada_input"
+          label="Canada"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='email'
-          type='email'
+          name="email"
+          type="email"
           value={driver.email}
           onChange={updateDriverForm}
-          id='email_input'
-          label='Email'
+          id="email_input"
+          label="Email"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='home'
-          type='text'
+          name="home"
+          type="text"
           value={driver.home}
           onChange={updateDriverForm}
-          id='home_input'
-          label='Home'
+          id="home_input"
+          label="Home"
           error={false}
         />
         <FormInput
           onKeyPress={getLocationByZip}
           className={classes.textField}
-          name='zipCode'
-          type='text'
+          name="zipCode"
+          type="text"
           value={driver.zipCode}
           onChange={updateDriverForm}
-          id='zip_input'
-          label='ZIP code'
+          id="zip_input"
+          label="ZIP code"
           error={false}
         />
         <FormInput
           className={classes.textField}
-          name='location'
-          type='text'
+          name="location"
+          type="text"
           value={driver.location}
           onChange={updateDriverForm}
-          id='location_input'
-          label='Coords.location'
+          id="location_input"
+          label="Coords.location"
           error={false}
-          disabled={user.role !== 'admin'}
+          disabled={user.role !== "admin"}
         />
         <FormInput
           className={classes.textField}
-          name='lat'
-          type='text'
+          name="lat"
+          type="text"
           value={driver.lat}
           onChange={updateDriverForm}
-          id='lat_input'
-          label='Coords.lat'
+          id="lat_input"
+          label="Coords.lat"
           error={false}
-          disabled={user.role !== 'admin'}
+          disabled={user.role !== "admin"}
         />
         <FormInput
           className={classes.textField}
-          name='lng'
-          type='text'
+          name="lng"
+          type="text"
           value={driver.lng}
           onChange={updateDriverForm}
-          id='lng_input'
-          label='Coords.lng'
+          id="lng_input"
+          label="Coords.lng"
           error={false}
-          disabled={user.role !== 'admin'}
+          disabled={user.role !== "admin"}
         />
         <FormInput
           className={classes.textField}
-          name='note'
-          type='text'
+          name="note"
+          type="text"
           value={driver.note}
           onChange={updateDriverForm}
-          id='note_input'
-          label='Note'
+          id="note_input"
+          label="Note"
           error={false}
         />
         <br />
         <br />
         <Button
-          variant='outlined'
+          variant="outlined"
           className={classes.save}
           startIcon={<SaveIcon />}
           onClick={saveHandler}

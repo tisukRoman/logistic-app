@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useUser } from '../hooks/useUser';
+import { useState, useEffect } from "react";
+import { useUser } from "../hooks/useUser";
 import {
   Dialog,
   DialogActions,
@@ -11,12 +11,12 @@ import {
   Select,
   makeStyles,
   MenuItem,
-} from '@material-ui/core';
-import styled from 'styled-components';
-import { theme } from '../theme';
-import { FormInput } from '../components/FormInput';
-import { Message } from '../components/Message';
-import { getList, signup } from '../utils/firebase';
+} from "@material-ui/core";
+import styled from "styled-components";
+import { theme } from "../theme";
+import { FormInput } from "../components/FormInput";
+import { Message } from "../components/Message";
+import { getList, signup } from "../utils/firebase";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -25,14 +25,14 @@ const Container = styled.div`
 
 const useStyles = makeStyles(() => ({
   dialog: {
-    width: '100%',
+    width: "100%",
   },
   formControl: {
-    marginTop: '1.5em',
-    width: '100%',
+    marginTop: "1.5em",
+    width: "100%",
   },
   buttons: {
-    marginTop: '2em',
+    marginTop: "2em",
     color: theme.COLORS.main,
   },
 }));
@@ -43,16 +43,16 @@ export const CreateUserModal = ({ modal, setModal }) => {
   const [message, setMessage] = useState(null);
   const [rooms, setRooms] = useState([]);
   const [user, setUser] = useState({
-    name: '',
-    role: 'manager',
+    name: "",
+    role: "manager",
     roomId: authUser.roomId,
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   useEffect(() => {
     async function loadRoomOptions() {
-      const data = await getList('rooms');
+      const data = await getList("rooms");
       console.log(data);
       setRooms(data);
     }
@@ -70,13 +70,13 @@ export const CreateUserModal = ({ modal, setModal }) => {
   const submitHandler = async () => {
     try {
       if (Object.values(user).some((v) => !!v === false)) {
-        setMessage('Fill all the fields');
+        setMessage("Fill all the fields");
         return;
       }
-      await signup('users', user);
+      await signup("users", user);
       setModal(false);
     } catch (err) {
-      setMessage(err.message.split(': ')[1]);
+      setMessage(err.message.split(": ")[1]);
     }
   };
 
@@ -84,35 +84,35 @@ export const CreateUserModal = ({ modal, setModal }) => {
     <>
       <Dialog
         fullWidth={true}
-        maxWidth={'sm'}
+        maxWidth={"sm"}
         transitionDuration={500}
         open={modal}
         onClose={cancelHandler}
-        aria-labelledby='create-user-title'
+        aria-labelledby="create-user-title"
       >
         <Message
           message={message}
           open={!!message}
           onClose={() => setMessage(null)}
         />
-        <DialogTitle id='create-user-title'>Create User</DialogTitle>
+        <DialogTitle id="create-user-title">Create User</DialogTitle>
         <DialogContent>
           <Container>
             <FormInput
-              name='name'
-              type='text'
+              name="name"
+              type="text"
               value={user.name}
               onChange={updateUserForm}
-              id='user_name_input'
-              label='Name'
+              id="user_name_input"
+              label="Name"
               error={false}
             />
             <FormControl className={styles.formControl}>
-              <InputLabel id='user_roomId_input'>Room</InputLabel>
+              <InputLabel id="user_roomId_input">Room</InputLabel>
               <Select
-                labelId='user_roomId_input'
-                id='user_roomId_input'
-                name='roomId'
+                labelId="user_roomId_input"
+                id="user_roomId_input"
+                name="roomId"
                 value={user.roomId}
                 onChange={updateUserForm}
               >
@@ -120,7 +120,7 @@ export const CreateUserModal = ({ modal, setModal }) => {
                   rooms.map(({ id }) => (
                     <MenuItem value={id} key={id}>
                       #{id}
-                      {+authUser.roomId === +id && ' (current)'}
+                      {+authUser.roomId === +id && " (current)"}
                     </MenuItem>
                   ))
                 ) : (
@@ -131,43 +131,43 @@ export const CreateUserModal = ({ modal, setModal }) => {
               </Select>
             </FormControl>
             <FormControl className={styles.formControl}>
-              <InputLabel id='user_role_input'>Role</InputLabel>
+              <InputLabel id="user_role_input">Role</InputLabel>
               <Select
-                labelId='user_role_input'
-                id='user_role_input'
-                name='role'
+                labelId="user_role_input"
+                id="user_role_input"
+                name="role"
                 value={user.role}
                 onChange={updateUserForm}
               >
-                <MenuItem value={'admin'}>Admin</MenuItem>
-                <MenuItem value={'manager'}>Manager</MenuItem>
+                <MenuItem value={"admin"}>Admin</MenuItem>
+                <MenuItem value={"manager"}>Manager</MenuItem>
               </Select>
             </FormControl>
             <FormInput
-              name='email'
-              type='email'
+              name="email"
+              type="email"
               value={user.email}
               onChange={updateUserForm}
-              id='user_email_input'
-              label='Email'
+              id="user_email_input"
+              label="Email"
               error={false}
             />
             <FormInput
-              name='password'
-              type='password'
+              name="password"
+              type="password"
               value={user.password}
               onChange={updateUserForm}
-              id='user_password_input'
-              label='Password'
+              id="user_password_input"
+              label="Password"
               error={false}
             />
           </Container>
         </DialogContent>
         <DialogActions className={styles.buttons}>
-          <Button onClick={cancelHandler} color='inherit'>
+          <Button onClick={cancelHandler} color="inherit">
             Cancel
           </Button>
-          <Button onClick={submitHandler} color='inherit'>
+          <Button onClick={submitHandler} color="inherit">
             Submit
           </Button>
         </DialogActions>

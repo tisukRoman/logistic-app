@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { createContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export const UserContext = createContext();
 
-const pathes = ['/login', '/drivers/create', '/drivers', '/users', '/map'];
+const pathes = ["/login", "/drivers/create", "/drivers", "/users", "/map"];
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -11,10 +11,17 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const currentPath = history.location.pathname;
+
+    /*
     if (!pathes.includes(currentPath)) {
-      history.push('/');
+      history.push("/");
     } else if (!user && pathes.includes(currentPath)) {
-      history.push('/login');
+      history.push("/login");
+    }
+    */
+
+    if (!user) {
+      history.push("/login");
     }
   }, [user, history]);
 
