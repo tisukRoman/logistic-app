@@ -1,0 +1,10 @@
+html {
+   font-family: roboto, Arial, sans-serif;
+   overflow-x: hidden;
+}
+
+* {
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
