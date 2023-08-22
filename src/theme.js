@@ -1,9 +1,9 @@
 export const theme = {
-    COLORS: {
-        main: '#75E6DA',
-        second: '#D4F1F4',
-        white: '#fff',
-        danger: '#ee3636',
-        grey: '#E8E8E8'
-    }
-}
+  COLORS: {
+    main: "rgb(103, 76, 71)",
+    second: "rgba(103, 76, 71, 0.5)",
+    white: "#fff",
+    danger: "#ee3636",
+    grey: "#E8E8E8",
+  },
+};
